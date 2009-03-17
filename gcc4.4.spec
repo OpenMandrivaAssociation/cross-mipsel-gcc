@@ -44,9 +44,10 @@
 # Define if building a cross compiler
 # FIXME: assume user does not define both cross and cross_bootstrap variables
 %define build_cross		0
-%define build_cross_bootstrap	0
+
+%define	cross_bootstrap		mipsel
+%define	build_cross_bootstrap	1
 %{expand: %{?cross:		%%global build_cross 1}}
-%{expand: %{?cross_bootstrap:	%%global build_cross_bootstrap 1}}
 
 # System compiler in MDV 2010
 %if %{mdkversion} >= 201000
@@ -296,6 +297,7 @@
 %define build_objc		0
 %define build_objcp		0
 %define build_java		0
+%define	build_libgcj_bc		0
 %define build_debug		0
 %define build_libffi		0
 %define build_libmudflap	0
