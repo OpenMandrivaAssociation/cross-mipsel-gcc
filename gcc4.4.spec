@@ -199,6 +199,12 @@
 %define build_libssp		1
 %define use_ssp_glibc		0
 %endif
+# requires support from glibc 2.9
+%if %{mdkversion} >= 200910
+%define	with_mips_plt		1
+%else
+%define	with_mips_plt		0
+%endif
 %if !%{system_compiler}
 %define build_fortran           0
 %define build_objc		0
@@ -1381,6 +1387,10 @@ SSP_FLAGS="--enable-ssp --enable-libssp"
 %if %{use_ssp_glibc}
 SSP_FLAGS="--enable-ssp --disable-libssp"
 %endif
+MIPSPLT_FLAGS="--without-mips-plt"
+%if %{with_mips_plt}
+MIPSPLT_FLAGS="--with-mips-plt"
+%endif
 %if !%{build_libmudflap}
 MUDFLAP_FLAGS="--disable-libmudflap"
 %endif
@@ -1425,8 +1435,8 @@ i?86|athlon)	TARGET_FLAGS="--with-cpu=generic";;
 ppc)		TARGET_FLAGS="--with-cpu=750 --with-long-double-128";;
 ppc32|ppc64)	TARGET_FLAGS="--with-cpu=power4 --with-long-double-128";;
 sparc|sparcv9)	TARGET_FLAGS="--with-long-double-128";;
-mips|mipsel)	TARGET_FLAGS="--with-arch=mips3 --with-tune=loongson2f --with-mips-plt";;
-mips64|mips64el) TARGET_FLAGS="--with-arch=mips3 --with-tune=loongson2f --enable-long-long --with-abi=64 --with-mips-plt";;
+mips|mipsel)	TARGET_FLAGS="--with-arch=mips3 --with-tune=loongson2f $MIPSPLT_FLAGS";;
+mips64|mips64el) TARGET_FLAGS="--with-arch=mips3 --with-tune=loongson2f --enable-long-long --with-abi=64 $MIPSPLT_FLAGS";;
 esac
 # (anssi) building with external jar fails
 export JAR="no"
