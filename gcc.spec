@@ -21,13 +21,13 @@
 
 #-----------------------------------------------------------------------
 Name:		cross-%{cross}-gcc
-Version:	4.6.0
-Release:	%{mkrel 1}
+Version:	4.6.2
+Release:	1
 Summary:	GNU Compiler Collection
 License:	GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions and LGPLv2+ and BSD
 Group:		Development/C
 URL:		http://gcc.gnu.org/
-Source0:	gcc-4.6.0.tar.bz2
+Source0:	gcc-%{version}.tar.bz2
 Source1:	lsb-headers-3.1.1.tar.bz2
 BuildRequires:	binutils >= 2.20.51.0.2
 BuildRequires:	elfutils-devel >= 0.147
@@ -54,7 +54,7 @@ The gcc package contains the GNU Compiler Collection version 4.6.
 
 ########################################################################
 %prep
-%setup -q -n gcc-4.6.0
+%setup -q -n gcc-%{version}
 
 %patch0 -p1
 mkdir sysroot
@@ -113,7 +113,6 @@ pushd obj-%{cross_target}
 # by adding a symlink to the headers since xgcc already passes -isystem ./include
     mkdir -p %{cross_target}/libgcc
     ln -sf $PWD/../sysroot/usr/include %{cross_target}/libgcc/include
-
     %make
 popd
 
@@ -127,7 +126,3 @@ mv -f %{buildroot}%{gccdir}/include{-fixed,}/syslimits.h
 mv -f %{buildroot}%{gccdir}/include{-fixed,}/limits.h
 rm -fr %{buildroot}%{gccdir}/include-fixed
 rm -fr %{buildroot}%{gccdir}/install-tools/include
-
-#-----------------------------------------------------------------------
-%clean
-rm -fr %{buildroot}
