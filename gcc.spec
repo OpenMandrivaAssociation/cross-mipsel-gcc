@@ -39,6 +39,9 @@ BuildRequires:	flex
 BuildRequires:	gdb
 BuildRequires:	gettext
 BuildRequires:	sharutils
+BuildRequires:	mpfr-devel
+BuildRequires:	libgmp-devel
+BuildRequires:	libmpc-devel
 
 Patch0:		gcc-4.6.0-uclibc-ldso-path.patch
 Patch1:		lsb-headers-3.1.1-misc.patch
