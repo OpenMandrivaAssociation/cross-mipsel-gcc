@@ -10,7 +10,7 @@
 %define		_disable_libtoolize		1
 
 #-----------------------------------------------------------------------
-%define		cross			mipsel
+%define		cross			mips64el
 %define		cross_target		%{cross}-linux
 %define		branch			4.6
 %define		gccdir			%{_libdir}/gcc/%{cross_target}/%{version}
@@ -51,7 +51,6 @@ Patch2:		lsb-headers-3.1.1-mips-support.patch
 The gcc package contains the GNU Compiler Collection version 4.6.
 
 %files
-%defattr(-,root,root)
 %{_bindir}/*
 %{_libdir}/gcc/%{cross_target}
 
@@ -102,6 +101,7 @@ pushd obj-%{cross_target}
 	--enable-languages="c"					\
 	--enable-linker-build-id				\
 	--disable-plugin					\
+	--with-abi=64						\
 	--enable-threads=posix					\
 	--with-system-zlib					\
 	--with-bugurl=https://qa.mandriva.com/			\
