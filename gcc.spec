@@ -10,7 +10,7 @@
 %define		_disable_libtoolize		1
 
 #-----------------------------------------------------------------------
-%define		cross			mips64el
+%define		cross			mipsel
 %define		cross_target		%{cross}-linux
 %define		branch			4.6
 %define		gccdir			%{_libdir}/gcc/%{cross_target}/%{version}
@@ -42,6 +42,7 @@ BuildRequires:	sharutils
 BuildRequires:	mpfr-devel
 BuildRequires:	libgmp-devel
 BuildRequires:	libmpc-devel
+BuildRequires:	cross-mipsel-binutils
 
 Patch0:		gcc-4.6.0-uclibc-ldso-path.patch
 Patch1:		lsb-headers-3.1.1-misc.patch
