@@ -26,7 +26,7 @@ Release:	1
 Summary:	GNU Compiler Collection
 License:	GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions and LGPLv2+ and BSD
 Group:		Development/C
-URL:		http://gcc.gnu.org/
+URL:		https://gcc.gnu.org/
 Source0:	gcc-%{version}.tar.bz2
 Source1:	lsb-headers-3.1.1.tar.bz2
 BuildRequires:	binutils >= 2.20.51.0.2
